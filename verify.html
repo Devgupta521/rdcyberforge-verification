@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,216 +14,275 @@
 
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f6f8;
             min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #020617, #0f172a);
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
         }
 
-        .card {
+        .container {
             width: 100%;
-            max-width: 520px;
+            max-width: 500px;
             background: #ffffff;
             border-radius: 18px;
-            padding: 35px;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+            padding: 35px 25px;
             text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
         }
 
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
+        .brand {
+            font-size: 26px;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 8px;
         }
 
-        .tagline {
-            color: #777;
-            font-size: 14px;
+        .subtitle {
+            color: #64748b;
             margin-bottom: 30px;
         }
 
         h1 {
             font-size: 24px;
-            margin-bottom: 25px;
+            color: #111827;
+            margin-bottom: 10px;
         }
 
-        .verified {
-            display: inline-block;
-            padding: 12px 22px;
-            border-radius: 30px;
-            background: #e8f7ee;
-            color: #16803c;
-            font-size: 18px;
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            margin: 15px 0;
+        }
+
+        input:focus {
+            border-color: #2563eb;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #111827;
+            color: white;
+            font-size: 16px;
             font-weight: bold;
-            margin-bottom: 25px;
+            cursor: pointer;
         }
 
-        .details {
-            text-align: left;
-            border-top: 1px solid #eee;
-            margin-top: 5px;
+        button:hover {
+            background: #1e293b;
         }
 
-        .row {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            padding: 14px 0;
-            border-bottom: 1px solid #eee;
+        #result {
+            margin-top: 25px;
         }
 
-        .label {
-            color: #777;
-            font-size: 14px;
+        .success {
+            color: #16a34a;
+            font-size: 21px;
+            font-weight: bold;
         }
 
-        .value {
-            font-weight: 600;
-            text-align: right;
-            font-size: 14px;
+        .not-found {
+            color: #dc2626;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .certificate-name {
+            color: #111827;
+            margin-top: 10px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 12px 22px;
+            background: #16a34a;
+            color: white;
+            text-decoration: none;
+            border-radius: 9px;
+            font-weight: bold;
+        }
+
+        .download-btn:hover {
+            background: #15803d;
         }
 
         .footer {
-            margin-top: 28px;
-            font-size: 12px;
-            color: #888;
-        }
-
-        .invalid {
-            color: #c62828;
-            background: #fdecec;
-            padding: 14px;
-            border-radius: 10px;
-            font-weight: bold;
-        }
-
-        @media (max-width: 450px) {
-            .card {
-                padding: 25px 20px;
-            }
-
-            .row {
-                flex-direction: column;
-                gap: 5px;
-            }
-
-            .value {
-                text-align: left;
-            }
+            margin-top: 30px;
+            font-size: 13px;
+            color: #94a3b8;
         }
     </style>
 </head>
 
 <body>
 
-<div class="card">
+    <div class="container">
 
-    <div class="logo">RD CYBERFORGE</div>
+        <div class="brand">
+            RD CyberForge
+        </div>
 
-    <div class="tagline">
-        Cybersecurity Training & Learning
+        <div class="subtitle">
+            Certificate Verification Portal
+        </div>
+
+        <h1>Find Your Certificate</h1>
+
+        <p>
+            Enter your registered name below.
+        </p>
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Enter your full name"
+            autocomplete="off"
+        >
+
+        <button onclick="verifyCertificate()">
+            Verify Certificate
+        </button>
+
+        <div id="result"></div>
+
+        <div class="footer">
+            © 2026 RD CyberForge
+        </div>
+
     </div>
 
-    <h1>Certificate Verification</h1>
 
-    <div id="result">
-        Verifying certificate...
-    </div>
+    <script>
 
-    <div class="footer">
-        This page confirms the authenticity of an RD CyberForge certificate.
-    </div>
+        /*
+        ==========================================
+        CERTIFICATE DATABASE
+        ==========================================
 
-</div>
+        Add your members here.
 
-<script>
+        IMPORTANT:
+        The PDF filename must EXACTLY match
+        the file uploaded to your GitHub repository.
+        */
 
-const params = new URLSearchParams(window.location.search);
-const certificateId = params.get("id");
+        const certificates = {
 
-fetch("certificates.json")
-    .then(response => response.json())
-    .then(certificates => {
+            "Sachin kumar": "Sachin-Kumar.pdf",
 
-        const result = document.getElementById("result");
+            "Hemalatha": "Hemalatha.pdf"
 
-        if (certificateId && certificates[certificateId]) {
+        };
 
-            const cert = certificates[certificateId];
 
-            result.innerHTML = `
-                <div class="verified">
-                    ✓ Certificate Verified
-                </div>
+        function verifyCertificate() {
 
-                <div class="details">
+            const inputName = document
+                .getElementById("name")
+                .value
+                .trim()
+                .toLowerCase();
 
-                    <div class="row">
-                        <div class="label">Certificate ID</div>
-                        <div class="value">${certificateId}</div>
+            const result = document
+                .getElementById("result");
+
+
+            // Empty name check
+
+            if (inputName === "") {
+
+                result.innerHTML = `
+                    <div class="not-found">
+                        Please enter your name.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            // Search certificate
+
+            if (certificates[inputName]) {
+
+                const certificateFile =
+                    certificates[inputName];
+
+                result.innerHTML = `
+
+                    <div class="success">
+                        ✓ Certificate Found
                     </div>
 
-                    <div class="row">
-                        <div class="label">Name</div>
-                        <div class="value">${cert.name}</div>
+                    <div class="certificate-name">
+                        Certificate issued to
+                        <strong>
+                            ${inputName
+                                .split(" ")
+                                .map(word =>
+                                    word.charAt(0).toUpperCase()
+                                    + word.slice(1)
+                                )
+                                .join(" ")
+                            }
+                        </strong>
                     </div>
 
-                    <div class="row">
-                        <div class="label">Course</div>
-                        <div class="value">${cert.course}</div>
+                    <a
+                        class="download-btn"
+                        href="${certificateFile}"
+                        target="_blank"
+                        download
+                    >
+                        View / Download Certificate
+                    </a>
+
+                `;
+
+            } else {
+
+                result.innerHTML = `
+
+                    <div class="not-found">
+                        ✕ Certificate Not Found
                     </div>
 
-                    <div class="row">
-                        <div class="label">Duration</div>
-                        <div class="value">${cert.duration}</div>
-                    </div>
+                    <p>
+                        Please check your name and try again.
+                    </p>
 
-                    <div class="row">
-                        <div class="label">Issue Date</div>
-                        <div class="value">${cert.issueDate}</div>
-                    </div>
-
-                    <div class="row">
-                        <div class="label">Status</div>
-                        <div class="value">${cert.status}</div>
-                    </div>
-
-                </div>
-            `;
-
-        } else {
-
-            result.innerHTML = `
-                <div class="invalid">
-                    ✕ Certificate Not Found
-                </div>
-
-                <p>
-                    The certificate ID provided could not be verified.
-                </p>
-            `;
+                `;
+            }
         }
 
-    })
-    .catch(error => {
 
-        document.getElementById("result").innerHTML = `
-            <div class="invalid">
-                Verification Error
-            </div>
+        // Allow pressing ENTER
 
-            <p>
-                Please try again later.
-            </p>
-        `;
+        document
+            .getElementById("name")
+            .addEventListener("keypress", function(event) {
 
-    });
+                if (event.key === "Enter") {
 
-</script>
+                    verifyCertificate();
+
+                }
+
+            });
+
+    </script>
 
 </body>
+
 </html>
