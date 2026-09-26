@@ -1,175 +1,123 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Certificate Verification -->
+<section class="cf-pack" id="verification">
 
-    <title>Certificate Verification | RD CyberForge</title>
+  <div class="container">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+    <div class="cf-eyebrow">08 — Verification</div>
 
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(135deg, #0b0b0b, #1b1b1b);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            color: #ffffff;
-        }
+    <h2 class="cf-title">Certificate verification.</h2>
 
-        .container {
-            width: 100%;
-            max-width: 520px;
-            text-align: center;
-        }
+    <p class="cf-subtitle">
+      Verify the authenticity of an RD CyberForge certificate
+      using the official certificate verification portal.
+    </p>
 
-        .logo {
-            font-size: 30px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
+    <div class="cf-verify">
 
-        .tagline {
-            color: #bdbdbd;
-            font-size: 14px;
-            margin-bottom: 35px;
-        }
+      <!-- Information Card -->
+      <article class="cf-mini-card reveal">
 
-        .card {
-            background: #ffffff;
-            color: #111111;
-            border-radius: 20px;
-            padding: 35px 30px;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.35);
-        }
-
-        h1 {
-            margin: 0 0 10px;
-            font-size: 25px;
-        }
-
-        .description {
-            color: #666666;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        input {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #d6d6d6;
-            border-radius: 10px;
-            font-size: 15px;
-            outline: none;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        input:focus {
-            border-color: #111111;
-        }
-
-        button {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            background: #111111;
-            color: #ffffff;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        button:hover {
-            opacity: 0.9;
-        }
-
-        .footer {
-            margin-top: 25px;
-            color: #999999;
-            font-size: 12px;
-        }
-    </style>
-</head>
-
-<body>
-
-<div class="container">
-
-    <div class="logo">
-        RD CYBERFORGE
-    </div>
-
-    <div class="tagline">
-        Cybersecurity Training & Learning
-    </div>
-
-    <div class="card">
-
-        <h1>Certificate Verification</h1>
-
-        <div class="description">
-            Verify the authenticity of an RD CyberForge certificate
-            using the unique Certificate ID.
+        <div class="cf-status">
+          <i></i> OFFICIAL VERIFICATION
         </div>
 
-        <input
-            type="text"
-            id="certificateId"
-            placeholder="Enter Certificate ID"
-            autocomplete="off"
+        <h3 style="margin-top:14px">
+          RD CyberForge
+        </h3>
+
+        <div class="cf-detail-list">
+
+          <div class="cf-detail">
+            <span>Verification Portal</span>
+            <strong>Official Certificate Verification</strong>
+          </div>
+
+          <div class="cf-detail">
+            <span>Verification Method</span>
+            <strong>Certificate ID / QR Code</strong>
+          </div>
+
+          <div class="cf-detail">
+            <span>Certificate Status</span>
+            <strong>Verified after successful completion</strong>
+          </div>
+
+        </div>
+
+        <div class="cf-cta">
+
+          <a
+            href="https://devgupta521.github.io/rdcyberforge-verification/"
+            target="_blank"
+            class="cf-copy-btn"
+            style="text-decoration:none;display:inline-block;"
+          >
+            Open Verification Portal
+          </a>
+
+        </div>
+
+        <p class="cf-note">
+          Certificate verification is available for officially issued
+          RD CyberForge certificates.
+        </p>
+
+      </article>
+
+
+      <!-- QR Card -->
+      <article class="cf-mini-card cf-qr reveal">
+
+        <div
+          class="cf-feature-icon"
+          style="margin-left:auto;margin-right:auto"
         >
+          ▣
+        </div>
 
-        <button onclick="verifyCertificate()">
-            VERIFY CERTIFICATE
-        </button>
+        <h3>Scan to Verify</h3>
+
+        <p>
+          Scan the QR code to access the official RD CyberForge
+          certificate verification portal.
+        </p>
+
+        <div
+          class="cf-qr-box"
+          id="cfVerificationQR"
+        ></div>
+
+        <p class="cf-note">
+          Scan using your phone camera.
+        </p>
+
+      </article>
 
     </div>
 
-    <div class="footer">
-        © 2026 RD CyberForge · Official Certificate Verification Portal
-    </div>
-
-</div>
+  </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
 
-function verifyCertificate() {
+  const verificationURL =
+    "https://devgupta521.github.io/rdcyberforge-verification/";
 
-    const id = document
-        .getElementById("certificateId")
-        .value
-        .trim();
+  const qrContainer =
+    document.getElementById("cfVerificationQR");
 
-    if (!id) {
-        alert("Please enter a Certificate ID.");
-        return;
-    }
+  if (qrContainer) {
 
-    window.location.href =
-        "verify.html?id=" + encodeURIComponent(id);
-}
-
-document
-    .getElementById("certificateId")
-    .addEventListener("keypress", function(event) {
-
-        if (event.key === "Enter") {
-            verifyCertificate();
-        }
-
+    new QRCode(qrContainer, {
+      text: verificationURL,
+      width: 180,
+      height: 180,
+      correctLevel: QRCode.CorrectLevel.H
     });
 
-</script>
+  }
 
-</body>
-</html>
+});
+</script>
+</section>
