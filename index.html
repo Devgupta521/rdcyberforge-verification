@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Certificate Verification | RD CyberForge</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #0b0b0b, #1b1b1b);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #ffffff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 520px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            color: #bdbdbd;
+            font-size: 14px;
+            margin-bottom: 35px;
+        }
+
+        .card {
+            background: #ffffff;
+            color: #111111;
+            border-radius: 20px;
+            padding: 35px 30px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.35);
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            font-size: 25px;
+        }
+
+        .description {
+            color: #666666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #d6d6d6;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        input:focus {
+            border-color: #111111;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #111111;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .footer {
+            margin-top: 25px;
+            color: #999999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        RD CYBERFORGE
+    </div>
+
+    <div class="tagline">
+        Cybersecurity Training & Learning
+    </div>
+
+    <div class="card">
+
+        <h1>Certificate Verification</h1>
+
+        <div class="description">
+            Verify the authenticity of an RD CyberForge certificate
+            using the unique Certificate ID.
+        </div>
+
+        <input
+            type="text"
+            id="certificateId"
+            placeholder="Enter Certificate ID"
+            autocomplete="off"
+        >
+
+        <button onclick="verifyCertificate()">
+            VERIFY CERTIFICATE
+        </button>
+
+    </div>
+
+    <div class="footer">
+        © 2026 RD CyberForge · Official Certificate Verification Portal
+    </div>
+
+</div>
+
+<script>
+
+function verifyCertificate() {
+
+    const id = document
+        .getElementById("certificateId")
+        .value
+        .trim();
+
+    if (!id) {
+        alert("Please enter a Certificate ID.");
+        return;
+    }
+
+    window.location.href =
+        "verify.html?id=" + encodeURIComponent(id);
+}
+
+document
+    .getElementById("certificateId")
+    .addEventListener("keypress", function(event) {
+
+        if (event.key === "Enter") {
+            verifyCertificate();
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
