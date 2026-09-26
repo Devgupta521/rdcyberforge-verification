@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,10 +14,8 @@
 
     <title>Certificate Verification | RD CyberForge</title>
 
-
     <!-- QR Code Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
 
     <style>
 
@@ -24,15 +23,9 @@
             box-sizing: border-box;
         }
 
-
         body {
-
             margin: 0;
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
 
             background:
                 linear-gradient(
@@ -45,61 +38,35 @@
             min-height: 100vh;
 
             display: flex;
-
             justify-content: center;
-
             align-items: center;
 
             padding: 25px;
 
             color: #ffffff;
-
         }
-
 
         .page {
-
             width: 100%;
-
             max-width: 560px;
-
             text-align: center;
-
         }
-
-
-        /* BRAND */
 
         .brand {
-
             font-size: 30px;
-
             font-weight: 800;
-
             letter-spacing: 3px;
-
             margin-bottom: 8px;
-
         }
-
 
         .tagline {
-
             font-size: 14px;
-
             color: #b5b5b5;
-
             margin-bottom: 30px;
-
         }
 
-
-        /* MAIN CARD */
-
         .card {
-
             background: #ffffff;
-
             color: #111111;
 
             border-radius: 22px;
@@ -109,45 +76,28 @@
             box-shadow:
                 0 20px 50px
                 rgba(0, 0, 0, 0.4);
-
         }
-
 
         h1 {
-
             margin: 0;
-
             font-size: 26px;
-
         }
 
-
         .description {
-
             margin-top: 12px;
-
             margin-bottom: 25px;
 
             color: #666666;
 
             font-size: 14px;
-
             line-height: 1.6;
-
         }
-
-
-        /* INPUT */
 
         .input-group {
-
             width: 100%;
-
         }
 
-
         input {
-
             width: 100%;
 
             padding: 15px;
@@ -163,21 +113,13 @@
             outline: none;
 
             transition: 0.2s;
-
         }
-
 
         input:focus {
-
             border-color: #111111;
-
         }
 
-
-        /* BUTTON */
-
         button {
-
             width: 100%;
 
             margin-top: 14px;
@@ -199,52 +141,29 @@
             cursor: pointer;
 
             transition: 0.2s;
-
         }
-
 
         button:hover {
-
             transform: translateY(-1px);
-
             opacity: 0.9;
-
         }
-
-
-        /* DIVIDER */
 
         .divider {
-
             height: 1px;
-
             background: #eeeeee;
-
             margin: 30px 0;
-
         }
-
-
-        /* QR SECTION */
 
         .qr-section {
-
             text-align: center;
-
         }
-
 
         .qr-section h2 {
-
             margin: 0;
-
             font-size: 20px;
-
         }
 
-
         .qr-description {
-
             margin-top: 8px;
 
             color: #666666;
@@ -252,22 +171,17 @@
             font-size: 13px;
 
             line-height: 1.5;
-
         }
 
-
         .qr-box {
-
             margin: 20px auto;
 
             width: 200px;
-
             height: 200px;
 
             display: flex;
 
             justify-content: center;
-
             align-items: center;
 
             background: #ffffff;
@@ -277,47 +191,30 @@
             border: 1px solid #eeeeee;
 
             border-radius: 12px;
-
         }
-
 
         #verificationQR {
-
             display: flex;
-
             justify-content: center;
-
             align-items: center;
-
         }
 
-
         #verificationQR img {
-
             display: block;
 
             width: 180px;
-
             height: 180px;
-
         }
 
-
         .qr-note {
-
             font-size: 12px;
 
             color: #888888;
 
             line-height: 1.5;
-
         }
 
-
-        /* FOOTER */
-
         .footer {
-
             margin-top: 25px;
 
             font-size: 12px;
@@ -325,39 +222,24 @@
             color: #999999;
 
             line-height: 1.5;
-
         }
-
-
-        /* MOBILE */
 
         @media (max-width: 480px) {
 
             body {
-
                 padding: 15px;
-
             }
-
 
             .card {
-
                 padding: 28px 20px;
-
             }
-
 
             .brand {
-
                 font-size: 25px;
-
             }
 
-
             h1 {
-
                 font-size: 23px;
-
             }
 
         }
@@ -366,19 +248,15 @@
 
 </head>
 
-
 <body>
 
-
 <div class="page">
-
 
     <!-- BRAND -->
 
     <div class="brand">
         RD CYBERFORGE
     </div>
-
 
     <div class="tagline">
         Cybersecurity Training & Learning
@@ -388,7 +266,6 @@
     <!-- MAIN CARD -->
 
     <div class="card">
-
 
         <!-- VERIFICATION -->
 
@@ -401,7 +278,7 @@
 
             Verify the authenticity of an
             RD CyberForge certificate using
-            the unique Certificate ID.
+            the participant's name.
 
         </p>
 
@@ -410,8 +287,8 @@
 
             <input
                 type="text"
-                id="certificateId"
-                placeholder="Enter Certificate ID"
+                id="participantName"
+                placeholder="Enter Participant Name"
                 autocomplete="off"
             >
 
@@ -434,7 +311,6 @@
         <!-- QR -->
 
         <div class="qr-section">
-
 
             <h2>
                 Scan to Verify
@@ -465,9 +341,7 @@
 
             </p>
 
-
         </div>
-
 
     </div>
 
@@ -482,38 +356,33 @@
 
     </div>
 
-
 </div>
-
 
 
 <script>
 
-
 /*
 ====================================================
-CERTIFICATE VERIFICATION
+CERTIFICATE VERIFICATION BY NAME
 ====================================================
 */
 
-
 function verifyCertificate() {
-
 
     const input =
         document.getElementById(
-            "certificateId"
+            "participantName"
         );
 
 
-    const certificateId =
+    const participantName =
         input.value.trim();
 
 
-    if (!certificateId) {
+    if (!participantName) {
 
         alert(
-            "Please enter a Certificate ID."
+            "Please enter the participant name."
         );
 
         input.focus();
@@ -525,17 +394,16 @@ function verifyCertificate() {
 
     /*
     Send the user to verify.html
-    with the Certificate ID.
+    with the participant name.
     */
 
     window.location.href =
-        "verify.html?id=" +
+        "verify.html?name=" +
         encodeURIComponent(
-            certificateId
+            participantName
         );
 
 }
-
 
 
 /*
@@ -544,9 +412,8 @@ ENTER KEY SUPPORT
 ====================================================
 */
 
-
 document
-    .getElementById("certificateId")
+    .getElementById("participantName")
     .addEventListener(
         "keypress",
         function(event) {
@@ -561,27 +428,15 @@ document
     );
 
 
-
 /*
 ====================================================
 QR CODE
 ====================================================
 */
 
-
 document.addEventListener(
     "DOMContentLoaded",
     function() {
-
-
-        /*
-        IMPORTANT:
-
-        This is your public verification
-        portal URL.
-
-        It does NOT belong to one student.
-        */
 
         const verificationURL =
             "https://devgupta521.github.io/rdcyberforge-verification/";
@@ -597,7 +452,6 @@ document.addEventListener(
             qrContainer &&
             typeof QRCode !== "undefined"
         ) {
-
 
             new QRCode(
                 qrContainer,
@@ -617,12 +471,12 @@ document.addEventListener(
 
         }
 
-    });
-
+    }
+);
 
 </script>
-
 
 </body>
 
 </html>
+```
