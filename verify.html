@@ -7,71 +7,125 @@
     <title>Certificate Verification | RD CyberForge</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             background: #f4f6f8;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            padding: 20px;
         }
 
-        .container {
-            background: white;
-            width: 90%;
-            max-width: 500px;
+        .card {
+            width: 100%;
+            max-width: 520px;
+            background: #ffffff;
+            border-radius: 18px;
             padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.12);
             text-align: center;
         }
 
-        h1 {
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 1px;
             margin-bottom: 5px;
         }
 
-        .brand {
-            font-size: 20px;
-            font-weight: bold;
+        .tagline {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 24px;
             margin-bottom: 25px;
         }
 
         .verified {
+            display: inline-block;
+            padding: 12px 22px;
+            border-radius: 30px;
+            background: #e8f7ee;
             color: #16803c;
-            font-size: 24px;
+            font-size: 18px;
             font-weight: bold;
-        }
-
-        .invalid {
-            color: #c62828;
-            font-size: 24px;
-            font-weight: bold;
+            margin-bottom: 25px;
         }
 
         .details {
             text-align: left;
-            margin-top: 25px;
+            border-top: 1px solid #eee;
+            margin-top: 5px;
         }
 
-        .details p {
-            padding: 10px 0;
+        .row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 14px 0;
             border-bottom: 1px solid #eee;
         }
 
-        .footer {
-            margin-top: 25px;
-            font-size: 13px;
+        .label {
             color: #777;
+            font-size: 14px;
+        }
+
+        .value {
+            font-weight: 600;
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .footer {
+            margin-top: 28px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .invalid {
+            color: #c62828;
+            background: #fdecec;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 450px) {
+            .card {
+                padding: 25px 20px;
+            }
+
+            .row {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .value {
+                text-align: left;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="card">
 
-    <div class="brand">RD CyberForge</div>
+    <div class="logo">RD CYBERFORGE</div>
+
+    <div class="tagline">
+        Cybersecurity Training & Learning
+    </div>
 
     <h1>Certificate Verification</h1>
 
@@ -80,7 +134,7 @@
     </div>
 
     <div class="footer">
-        Official Certificate Verification Portal
+        This page confirms the authenticity of an RD CyberForge certificate.
     </div>
 
 </div>
@@ -101,25 +155,54 @@ fetch("certificates.json")
             const cert = certificates[certificateId];
 
             result.innerHTML = `
-                <div class="verified">✓ Certificate Verified</div>
+                <div class="verified">
+                    ✓ Certificate Verified
+                </div>
 
                 <div class="details">
-                    <p><strong>Certificate ID:</strong> ${certificateId}</p>
-                    <p><strong>Name:</strong> ${cert.name}</p>
-                    <p><strong>Course:</strong> ${cert.course}</p>
-                    <p><strong>Duration:</strong> ${cert.duration}</p>
-                    <p><strong>Issue Date:</strong> ${cert.issueDate}</p>
-                    <p><strong>Status:</strong> ${cert.status}</p>
+
+                    <div class="row">
+                        <div class="label">Certificate ID</div>
+                        <div class="value">${certificateId}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">Name</div>
+                        <div class="value">${cert.name}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">Course</div>
+                        <div class="value">${cert.course}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">Duration</div>
+                        <div class="value">${cert.duration}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">Issue Date</div>
+                        <div class="value">${cert.issueDate}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">Status</div>
+                        <div class="value">${cert.status}</div>
+                    </div>
+
                 </div>
             `;
 
         } else {
 
             result.innerHTML = `
-                <div class="invalid">✕ Certificate Not Found</div>
+                <div class="invalid">
+                    ✕ Certificate Not Found
+                </div>
 
                 <p>
-                    The certificate ID could not be verified.
+                    The certificate ID provided could not be verified.
                 </p>
             `;
         }
@@ -128,8 +211,13 @@ fetch("certificates.json")
     .catch(error => {
 
         document.getElementById("result").innerHTML = `
-            <div class="invalid">Verification Error</div>
-            <p>Please try again later.</p>
+            <div class="invalid">
+                Verification Error
+            </div>
+
+            <p>
+                Please try again later.
+            </p>
         `;
 
     });
