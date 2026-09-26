@@ -1,161 +1,194 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Certificate Verification | RD CyberForge</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Certificate | RD CyberForge</title>
 
     <style>
+
         * {
             box-sizing: border-box;
         }
 
         body {
+
             margin: 0;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #080808,
+                    #151515,
+                    #242424
+                );
+
             min-height: 100vh;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #020617, #0f172a);
 
             display: flex;
+
             justify-content: center;
+
             align-items: center;
 
             padding: 20px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 500px;
-
-            background: white;
-
-            padding: 35px 25px;
-
-            border-radius: 18px;
-
-            text-align: center;
-
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
-        }
-
-        .brand {
-            font-size: 28px;
-            font-weight: bold;
-            color: #111827;
-
-            margin-bottom: 5px;
-        }
-
-        .subtitle {
-            color: #64748b;
-            margin-bottom: 30px;
-        }
-
-        h1 {
-            color: #111827;
-            font-size: 24px;
-        }
-
-        p {
-            color: #475569;
-        }
-
-        input {
-            width: 100%;
-
-            padding: 14px;
-
-            margin: 15px 0;
-
-            border: 1px solid #cbd5e1;
-
-            border-radius: 10px;
-
-            font-size: 16px;
-
-            outline: none;
-        }
-
-        input:focus {
-            border-color: #2563eb;
-        }
-
-        button {
-            width: 100%;
-
-            padding: 14px;
-
-            border: none;
-
-            border-radius: 10px;
-
-            background: #111827;
 
             color: white;
 
-            font-size: 16px;
+        }
+
+        .container {
+
+            width: 100%;
+
+            max-width: 600px;
+
+            text-align: center;
+
+        }
+
+        .brand {
+
+            font-size: 28px;
+
+            font-weight: 800;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 8px;
+
+        }
+
+        .tagline {
+
+            color: #aaa;
+
+            font-size: 14px;
+
+            margin-bottom: 25px;
+
+        }
+
+        .card {
+
+            background: white;
+
+            color: #111;
+
+            border-radius: 20px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 20px 50px
+                rgba(0,0,0,0.4);
+
+        }
+
+        .status {
+
+            font-size: 24px;
 
             font-weight: bold;
 
-            cursor: pointer;
+            margin-bottom: 15px;
+
         }
 
-        button:hover {
-            background: #1e293b;
-        }
+        .name {
 
-        #result {
-            margin-top: 25px;
-        }
+            font-size: 20px;
 
-        .success {
-            color: #16a34a;
-            font-size: 22px;
             font-weight: bold;
+
+            margin-bottom: 20px;
+
         }
 
-        .not-found {
-            color: #dc2626;
-            font-size: 22px;
-            font-weight: bold;
-        }
+        .certificate {
 
-        .certificate-name {
-            margin-top: 12px;
-            color: #111827;
+            width: 100%;
+
+            max-width: 520px;
+
+            border-radius: 10px;
+
+            border: 1px solid #ddd;
+
+            display: block;
+
+            margin: 20px auto;
+
         }
 
         .download {
+
             display: inline-block;
 
-            margin-top: 20px;
+            margin-top: 15px;
 
-            padding: 12px 22px;
+            padding: 14px 25px;
 
-            background: #16a34a;
+            background: #111;
 
             color: white;
 
             text-decoration: none;
 
-            border-radius: 9px;
+            border-radius: 10px;
 
             font-weight: bold;
+
         }
 
-        .download:hover {
-            background: #15803d;
+        .back {
+
+            display: inline-block;
+
+            margin-top: 15px;
+
+            color: #555;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+        }
+
+        .error {
+
+            color: #b00020;
+
+            font-weight: bold;
+
+            line-height: 1.6;
+
+        }
+
+        .loading {
+
+            color: #555;
+
         }
 
         .footer {
-            margin-top: 30px;
 
-            font-size: 13px;
+            margin-top: 20px;
 
-            color: #94a3b8;
+            font-size: 12px;
+
+            color: #999;
+
         }
+
     </style>
 
 </head>
@@ -163,203 +196,368 @@
 
 <body>
 
+
 <div class="container">
 
+
     <div class="brand">
-        RD CyberForge
+        RD CYBERFORGE
     </div>
 
-    <div class="subtitle">
-        Certificate Verification Portal
+
+    <div class="tagline">
+        Cybersecurity Training & Learning
     </div>
 
-    <h1>
-        Find Your Certificate
-    </h1>
 
-    <p>
-        Enter your registered name below.
-    </p>
+    <div class="card" id="result">
 
+        <div class="loading">
+            Verifying certificate...
+        </div>
 
-    <input
-        type="text"
-        id="name"
-        placeholder="Enter your full name"
-        autocomplete="off"
-    >
-
-
-    <button onclick="verifyCertificate()">
-        Verify Certificate
-    </button>
-
-
-    <div id="result"></div>
+    </div>
 
 
     <div class="footer">
-        © 2026 RD CyberForge
+
+        © 2026 RD CyberForge<br>
+
+        Official Certificate Verification Portal
+
     </div>
+
 
 </div>
 
 
 <script>
 
+/*
+====================================================
+GET PARTICIPANT NAME FROM URL
+====================================================
+*/
 
-function verifyCertificate() {
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
 
-    const inputName = document
-        .getElementById("name")
-        .value
-        .trim()
-        .toLowerCase();
-
-
-    const result = document
-        .getElementById("result");
-
-
-    // Check empty input
-
-    if (inputName === "") {
-
-        result.innerHTML = `
-
-            <div class="not-found">
-                Please enter your name.
-            </div>
-
-        `;
-
-        return;
-    }
+const enteredName =
+    urlParams.get("name");
 
 
-    // Read certificates.json
-
-    fetch("certificates.json")
-
-        .then(response => {
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "Unable to load certificates.json"
-                );
-
-            }
-
-            return response.json();
-
-        })
+const result =
+    document.getElementById("result");
 
 
-        .then(data => {
+/*
+====================================================
+CHECK NAME
+====================================================
+*/
 
-            const certificate = data[inputName];
+if (!enteredName) {
 
+    result.innerHTML = `
 
-            // Certificate found
+        <div class="error">
 
-            if (certificate) {
+            ❌ No participant name provided.
 
-                result.innerHTML = `
+        </div>
 
-                    <div class="success">
-                        ✓ Certificate Found
-                    </div>
+        <a
+            class="back"
+            href="index.html">
 
+            ← Back to Verification
 
-                    <div class="certificate-name">
+        </a>
 
-                        Certificate issued to:
+    `;
 
-                        <br>
+} else {
 
-                        <strong>
-                            ${certificate.name}
-                        </strong>
-
-                    </div>
-
-
-                    <a
-                        class="download"
-                        href="${certificate.certificate}"
-                        target="_blank"
-                        download
-                    >
-                        View / Download Certificate
-                    </a>
-
-                `;
-
-            }
-
-
-            // Certificate not found
-
-            else {
-
-                result.innerHTML = `
-
-                    <div class="not-found">
-                        ✕ Certificate Not Found
-                    </div>
-
-                    <p>
-                        No certificate was found
-                        for this name.
-                    </p>
-
-                `;
-
-            }
-
-        })
-
-
-        .catch(error => {
-
-            console.error(error);
-
-            result.innerHTML = `
-
-                <div class="not-found">
-                    Unable to Verify
-                </div>
-
-                <p>
-                    Please try again later.
-                </p>
-
-            `;
-
-        });
+    loadCertificate();
 
 }
 
 
+/*
+====================================================
+LOAD CERTIFICATE
+====================================================
+*/
 
-// Allow ENTER key
+async function loadCertificate() {
 
-document
-    .getElementById("name")
-    .addEventListener("keypress", function(event) {
+    try {
 
-        if (event.key === "Enter") {
+        const response =
+            await fetch("certificates.json");
 
-            verifyCertificate();
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load certificates.json"
+            );
 
         }
 
-    });
 
+        const certificates =
+            await response.json();
+
+
+        /*
+        ==============================================
+        NORMALIZE ENTERED NAME
+        ==============================================
+        */
+
+        const searchName =
+            enteredName
+                .trim()
+                .toLowerCase();
+
+
+        /*
+        ==============================================
+        FIND PARTICIPANT
+        ==============================================
+        */
+
+        let participant = null;
+
+
+        for (
+            const key in certificates
+        ) {
+
+            const data =
+                certificates[key];
+
+
+            if (
+                data.name
+                    .trim()
+                    .toLowerCase()
+                === searchName
+            ) {
+
+                participant = data;
+
+                break;
+
+            }
+
+        }
+
+
+        /*
+        ==============================================
+        CERTIFICATE NOT FOUND
+        ==============================================
+        */
+
+        if (!participant) {
+
+            result.innerHTML = `
+
+                <div class="error">
+
+                    ❌ Certificate Not Found
+
+                </div>
+
+                <p>
+
+                    No certificate was found
+                    for:
+
+                </p>
+
+                <strong>
+                    ${escapeHTML(enteredName)}
+                </strong>
+
+                <br><br>
+
+                <a
+                    class="back"
+                    href="index.html">
+
+                    ← Back to Verification
+
+                </a>
+
+            `;
+
+            return;
+
+        }
+
+
+        /*
+        ==============================================
+        CERTIFICATE FOUND
+        ==============================================
+        */
+
+        result.innerHTML = `
+
+            <div class="status">
+
+                ✓ Certificate Verified
+
+            </div>
+
+
+            <div class="name">
+
+                ${escapeHTML(participant.name)}
+
+            </div>
+
+
+            <img
+                class="certificate"
+                src="${encodeURI(participant.certificate)}"
+                alt="Certificate of ${escapeHTML(participant.name)}"
+                onerror="certificateError()"
+            >
+
+
+            <a
+                class="download"
+                href="${encodeURI(participant.certificate)}"
+                download>
+
+                DOWNLOAD CERTIFICATE
+
+            </a>
+
+
+            <br>
+
+
+            <a
+                class="back"
+                href="index.html">
+
+                ← Verify Another Name
+
+            </a>
+
+        `;
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+
+        result.innerHTML = `
+
+            <div class="error">
+
+                ❌ Unable to verify certificate.
+
+            </div>
+
+
+            <p>
+
+                Please make sure
+                <strong>certificates.json</strong>
+                is uploaded correctly.
+
+            </p>
+
+
+            <a
+                class="back"
+                href="index.html">
+
+                ← Back to Verification
+
+            </a>
+
+        `;
+
+    }
+
+}
+
+
+/*
+====================================================
+CERTIFICATE IMAGE ERROR
+====================================================
+*/
+
+function certificateError() {
+
+    result.innerHTML = `
+
+        <div class="error">
+
+            ✓ Participant Found
+
+            <br><br>
+
+            But the certificate file
+            could not be loaded.
+
+        </div>
+
+
+        <p>
+
+            Please check the certificate
+            filename in certificates.json.
+
+        </p>
+
+
+        <a
+            class="back"
+            href="index.html">
+
+            ← Back to Verification
+
+        </a>
+
+    `;
+
+}
+
+
+/*
+====================================================
+SECURITY: ESCAPE HTML
+====================================================
+*/
+
+function escapeHTML(text) {
+
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
 
 </script>
+
 
 </body>
 
 </html>
+```
