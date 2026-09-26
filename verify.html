@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Certificate Verification | RD CyberForge</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        .brand {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .verified {
+            color: #16803c;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .invalid {
+            color: #c62828;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .details {
+            text-align: left;
+            margin-top: 25px;
+        }
+
+        .details p {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="brand">RD CyberForge</div>
+
+    <h1>Certificate Verification</h1>
+
+    <div id="result">
+        Verifying certificate...
+    </div>
+
+    <div class="footer">
+        Official Certificate Verification Portal
+    </div>
+
+</div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const certificateId = params.get("id");
+
+fetch("certificates.json")
+    .then(response => response.json())
+    .then(certificates => {
+
+        const result = document.getElementById("result");
+
+        if (certificateId && certificates[certificateId]) {
+
+            const cert = certificates[certificateId];
+
+            result.innerHTML = `
+                <div class="verified">✓ Certificate Verified</div>
+
+                <div class="details">
+                    <p><strong>Certificate ID:</strong> ${certificateId}</p>
+                    <p><strong>Name:</strong> ${cert.name}</p>
+                    <p><strong>Course:</strong> ${cert.course}</p>
+                    <p><strong>Duration:</strong> ${cert.duration}</p>
+                    <p><strong>Issue Date:</strong> ${cert.issueDate}</p>
+                    <p><strong>Status:</strong> ${cert.status}</p>
+                </div>
+            `;
+
+        } else {
+
+            result.innerHTML = `
+                <div class="invalid">✕ Certificate Not Found</div>
+
+                <p>
+                    The certificate ID could not be verified.
+                </p>
+            `;
+        }
+
+    })
+    .catch(error => {
+
+        document.getElementById("result").innerHTML = `
+            <div class="invalid">Verification Error</div>
+            <p>Please try again later.</p>
+        `;
+
+    });
+
+</script>
+
+</body>
+</html>
