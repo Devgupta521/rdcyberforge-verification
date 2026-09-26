@@ -369,42 +369,20 @@ CERTIFICATE VERIFICATION BY NAME
 
 function verifyCertificate() {
 
-    const input =
-        document.getElementById(
-            "participantName"
-        );
+    const name = document
+        .getElementById("participantName")
+        .value
+        .trim();
 
-
-    const participantName =
-        input.value.trim();
-
-
-    if (!participantName) {
-
-        alert(
-            "Please enter the participant name."
-        );
-
-        input.focus();
-
+    if (!name) {
+        alert("Please enter participant name.");
         return;
-
     }
-
-
-    /*
-    Send the user to verify.html
-    with the participant name.
-    */
 
     window.location.href =
         "verify.html?name=" +
-        encodeURIComponent(
-            participantName
-        );
-
+        encodeURIComponent(name);
 }
-
 
 /*
 ====================================================
