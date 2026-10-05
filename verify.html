@@ -87,7 +87,9 @@ async function verify() {
 
 
     /*
-    GET NAME FROM URL
+    ============================================
+    GET CERTIFICATE ID FROM URL
+    ============================================
     */
 
     const params =
@@ -96,16 +98,23 @@ async function verify() {
         );
 
 
-    const enteredName =
-        params.get("name");
+    const enteredID =
+        params.get("id");
 
 
-    if (!enteredName) {
+    if (!enteredID) {
 
         result.innerHTML = `
-            <p class="error">
-                No participant name provided.
+
+            <h2 class="error">
+                ❌ No Certificate ID Provided
+            </h2>
+
+            <p>
+                Please enter a valid RD CyberForge
+                Certificate ID.
             </p>
+
         `;
 
         return;
@@ -114,7 +123,21 @@ async function verify() {
 
 
     /*
+    ============================================
+    NORMALIZE ID
+    ============================================
+    */
+
+    const certificateID =
+        enteredID
+            .trim()
+            .toUpperCase();
+
+
+    /*
+    ============================================
     LOAD JSON
+    ============================================
     */
 
     try {
@@ -139,48 +162,19 @@ async function verify() {
 
 
         /*
-        NORMALIZE NAME
+        ============================================
+        FIND CERTIFICATE USING ID
+        ============================================
         */
 
-        const searchName =
-            enteredName
-                .trim()
-                .toLowerCase();
+        const participant =
+            certificates[certificateID];
 
 
         /*
-        SEARCH JSON
-        */
-
-        let participant = null;
-
-
-        for (
-            const key in certificates
-        ) {
-
-            const item =
-                certificates[key];
-
-
-            if (
-                item.name
-                    .trim()
-                    .toLowerCase()
-                === searchName
-            ) {
-
-                participant = item;
-
-                break;
-
-            }
-
-        }
-
-
-        /*
-        NOT FOUND
+        ============================================
+        CERTIFICATE NOT FOUND
+        ============================================
         */
 
         if (!participant) {
@@ -193,11 +187,11 @@ async function verify() {
 
                 <p>
                     No certificate is registered
-                    for:
+                    for Certificate ID:
                 </p>
 
                 <strong>
-                    ${enteredName}
+                    ${certificateID}
                 </strong>
 
             `;
@@ -208,7 +202,9 @@ async function verify() {
 
 
         /*
-        FOUND
+        ============================================
+        CERTIFICATE FOUND
+        ============================================
         */
 
         result.innerHTML = `
@@ -217,12 +213,20 @@ async function verify() {
                 ✓ Certificate Verified
             </h2>
 
+            <p>
+                Certificate ID:
+            </p>
+
+            <strong>
+                ${certificateID}
+            </strong>
+
             <h3>
                 ${participant.name}
             </h3>
 
             <img
-                src="./${participant.certificate}"
+                src="./${encodeURIComponent(participant.certificate)}"
                 alt="Certificate"
                 onerror="imageError()"
             >
@@ -231,7 +235,7 @@ async function verify() {
 
             <a
                 class="download"
-                href="./${participant.certificate}"
+                href="./${encodeURIComponent(participant.certificate)}"
                 download>
 
                 DOWNLOAD CERTIFICATE
@@ -272,12 +276,18 @@ async function verify() {
 }
 
 
+/*
+============================================
+IMAGE ERROR
+============================================
+*/
+
 function imageError() {
 
     document.getElementById("result").innerHTML = `
 
         <h2>
-            ✓ Participant Found
+            ✓ Certificate ID Found
         </h2>
 
         <p class="error">
@@ -285,7 +295,7 @@ function imageError() {
         </p>
 
         <p>
-            Check the filename in
+            Check the certificate filename in
             certificates.json.
         </p>
 
@@ -293,6 +303,12 @@ function imageError() {
 
 }
 
+
+/*
+============================================
+START VERIFICATION
+============================================
+*/
 
 verify();
 

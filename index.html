@@ -278,7 +278,7 @@
 
             Verify the authenticity of an
             RD CyberForge certificate using
-            the participant's name.
+            the participant's Certificate ID.
 
         </p>
 
@@ -287,8 +287,8 @@
 
             <input
                 type="text"
-                id="participantName"
-                placeholder="Enter Participant Name"
+                id="certificateID"
+                placeholder="Enter Certificate ID"
                 autocomplete="off"
             >
 
@@ -363,26 +363,27 @@
 
 /*
 ====================================================
-CERTIFICATE VERIFICATION BY NAME
+CERTIFICATE VERIFICATION BY ID
 ====================================================
 */
 
 function verifyCertificate() {
 
-    const name = document
-        .getElementById("participantName")
+    const id = document
+        .getElementById("certificateID")
         .value
         .trim();
 
-    if (!name) {
-        alert("Please enter participant name.");
+    if (!id) {
+        alert("Please enter Certificate ID.");
         return;
     }
 
     window.location.href =
-        "verify.html?name=" +
-        encodeURIComponent(name);
+        "verify.html?id=" +
+        encodeURIComponent(id);
 }
+
 
 /*
 ====================================================
@@ -391,7 +392,7 @@ ENTER KEY SUPPORT
 */
 
 document
-    .getElementById("participantName")
+    .getElementById("certificateID")
     .addEventListener(
         "keypress",
         function(event) {
